@@ -3,14 +3,14 @@ FROM python:3.8
 WORKDIR /app
 
 COPY requirements.txt /app/
+
 RUN pip install --upgrade pip
-#RUN pip install -r requirements.txt
-RUN apt-get update && \
-    apt-get install -y postgresql postgresql-contrib && \
-    pip install --no-cache-dir -r requirements.txt
+RUN pip install -r requirements.txt
 
 COPY . /app/
 
+EXPOSE 5000
+
 ENV NAME App
 
-CMD ["python","app.py"]
+CMD ["flask","run", "--debug" ,"--host=0.0.0.0", "--port=5000"]

@@ -1,7 +1,7 @@
-from myapp.models.UserModel import User
+from myapp.models.Models import User
+from myapp.models.Models import db
 
 class UserService:
-    users = []  # In-memory storage, replace with a database later
 
     @classmethod
     def register_user(cls, username, password):
@@ -11,7 +11,8 @@ class UserService:
             return None  # User already exists
 
         new_user = User(username, password)
-        cls.users.append(new_user)
+        db.session.add(new_user)
+        db.session.commit()
         return new_user
 
     @classmethod

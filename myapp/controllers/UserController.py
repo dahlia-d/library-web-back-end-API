@@ -1,14 +1,13 @@
 from flask import Blueprint, request, jsonify
 from myapp.services.UserService import UserService
 
-user_controller = Blueprint('UserController', __name__)
+user_controller = Blueprint('user_controller', __name__)
 
 @user_controller.route('/register', methods=['POST'])
 def register_user():
     data = request.get_json()
     username = data.get('username')
     password = data.get('password')
-
     if not username or not password:
         return jsonify({'error': 'Missing username or password'}), 400
 
