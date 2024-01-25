@@ -1,7 +1,8 @@
-from myapp.models.Models import User
-from myapp.models.Models import db
+from myapp.models.Models import User, db
 
 class UserService:
+
+    users = User.query.all()
 
     @classmethod
     def register_user(cls, username, password):
